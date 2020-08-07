@@ -21,9 +21,8 @@ public class Product {
             super();
         }
 
-        public Product(Integer productId, String productName, String productDescription) {
+        public Product(String productName, String productDescription) {
             super();
-            this.productId = productId;
             this.productName = productName;
             this.productDescription = productDescription;
         }
