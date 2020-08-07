@@ -1,6 +1,6 @@
 package com.ecommerce_website.shop_api.exception;
 
-public class CustomException extends Exception{
+public class CustomException extends RuntimeException{
 
     private String message;
     private Integer statusCode;
