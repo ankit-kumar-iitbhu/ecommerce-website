@@ -43,6 +43,7 @@ public class ProductService {
         if(!productRepository.existsById(id)){
             throw new CustomException("Product with given ID does not exist",404);
         }
+        product.setProductId(id);
         Product updatedProduct=productRepository.save(product);
 
         return new ResponseEntity<>(updatedProduct,HttpStatus.ACCEPTED);
