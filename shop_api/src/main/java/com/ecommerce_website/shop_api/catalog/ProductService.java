@@ -21,7 +21,7 @@ public class ProductService {
     public ResponseEntity<Object> getAllProduct(){
         List<Product> products=new ArrayList<>();
         productRepository.findAll().forEach(products::add);
-        return new ResponseEntity<>(products, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     public ResponseEntity<Object> getProduct(Integer id) throws CustomException {
@@ -30,7 +30,7 @@ public class ProductService {
             throw new CustomException("Product with given ID does not exist",404);
         }
         else{
-            return new ResponseEntity<>(productOptional.get(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(productOptional.get(), HttpStatus.OK);
         }
     }
 
@@ -46,7 +46,7 @@ public class ProductService {
         product.setProductId(id);
         Product updatedProduct=productRepository.save(product);
 
-        return new ResponseEntity<>(updatedProduct,HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(updatedProduct,HttpStatus.OK);
     }
 
     public ResponseEntity<Object> deleteProduct(Integer id) {
@@ -54,7 +54,7 @@ public class ProductService {
             throw new CustomException("Product with given ID does not exist",404);
         }
         productRepository.deleteById(id);
-        return new ResponseEntity<>("product with productId = "+id+" has been deleted", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("product with productId = "+id+" has been deleted", HttpStatus.NO_CONTENT);
     }
 
 
