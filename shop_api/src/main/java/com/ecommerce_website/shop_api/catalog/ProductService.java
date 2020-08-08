@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import com.ecommerce_website.shop_api.exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -16,42 +18,43 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<Product> getAllProduct(){
+    public ResponseEntity<Object> getAllProduct(){
         List<Product> products=new ArrayList<>();
         productRepository.findAll().forEach(products::add);
-        return products;
+        return new ResponseEntity<>(products, HttpStatus.ACCEPTED);
     }
 
-    public Product getProduct(Integer id) throws CustomException {
+    public ResponseEntity<Object> getProduct(Integer id) throws CustomException {
         Optional<Product> productOptional = Optional.ofNullable(productRepository.findById(id).orElse(null));
         if(!productOptional.isPresent()){
             throw new CustomException("Product with given ID does not exist",404);
         }
         else{
-            return productOptional.get();
+            return new ResponseEntity<>(productOptional.get(), HttpStatus.ACCEPTED);
         }
     }
 
-    public Product postProduct(Product product) {
-        productRepository.save(product);
-        return product;
+    public ResponseEntity<Object> postProduct(Product product) {
+        Product savedProduct= productRepository.save(product);
+        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
 
-    public Product updateProduct(Integer id,Product product) throws CustomException {
+    public ResponseEntity<Object> updateProduct(Integer id,Product product) throws CustomException {
         if(!productRepository.existsById(id)){
             throw new CustomException("Product with given ID does not exist",404);
         }
-        productRepository.save(product);
-        return product;
+        Product updatedProduct=productRepository.save(product);
+
+        return new ResponseEntity<>(updatedProduct,HttpStatus.ACCEPTED);
     }
 
-    public void deleteProduct(Integer id) {
+    public ResponseEntity<Object> deleteProduct(Integer id) {
         if(!productRepository.existsById(id)){
             throw new CustomException("Product with given ID does not exist",404);
         }
         productRepository.deleteById(id);
+        return new ResponseEntity<>("product with productId = "+id+" has been deleted", HttpStatus.ACCEPTED);
     }
-
 
 
 }
