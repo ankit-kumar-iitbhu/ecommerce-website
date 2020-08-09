@@ -3,12 +3,10 @@ package com.ecommerce_website.shop_api.vendor;
 import com.ecommerce_website.shop_api.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+import javax.persistence.Id;
 
 @Entity
 public class Vendor {
