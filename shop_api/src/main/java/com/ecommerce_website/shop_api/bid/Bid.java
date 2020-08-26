@@ -33,6 +33,13 @@ public class Bid {
         super();
     }
 
+    public Bid(Double price, Product product, Vendor vendor) {
+        super();
+        this.price = price;
+        this.product = product;
+        this.vendor = vendor;
+    }
+
     @JsonProperty("bidId")
     public Integer getBidId() {
         return bidId;
