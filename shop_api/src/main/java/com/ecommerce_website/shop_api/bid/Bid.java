@@ -51,22 +51,18 @@ public class Bid {
         this.price = price;
     }
 
-    @JsonProperty("product")
     public Product getProduct() {
         return product;
     }
 
-    @JsonIgnore
     public void setProduct(Product product) {
         this.product = product;
     }
 
-    @JsonProperty("vendor")
     public Vendor getVendor() {
         return vendor;
     }
 
-    @JsonIgnore
     public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }

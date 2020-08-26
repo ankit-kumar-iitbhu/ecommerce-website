@@ -6,6 +6,6 @@ import java.util.List;
 
 @Repository
 public interface BidRepository extends CrudRepository<Bid,Integer> {
-    public List<Bid> getBidByProductProductId(Integer productId);
-    public List<Bid> getBidByVendorVendorId(Integer vendorId);
+    public List<Bid> findByProductProductId(Integer productId);
+    public List<Bid> findByVendorVendorId(Integer vendorId);
 }
