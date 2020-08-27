@@ -1,5 +1,6 @@
 package com.ecommerce_website.shop_api.bid;
 
+import com.ecommerce_website.shop_api.Constants;
 import com.ecommerce_website.shop_api.catalog.Product;
 import com.ecommerce_website.shop_api.vendor.Vendor;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -73,5 +74,11 @@ public class Bid {
     public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }
+
+    @JsonProperty("href")
+    public String getHREF() {
+        return Constants.bidUrl + this.bidId;
+    }
+}
 
 }
