@@ -1,7 +1,7 @@
 package com.ecommerce_website.shop_api;
 
 public class Constants {
-    public static String productUrl= "/products/";
-    public static String vendorUrl="/vendors/";
-    public static String bidUrl="/bids/";
+    public static final String productUrl= "/products";
+    public static final String vendorUrl="/vendors";
+    public static final String bidUrl="/bids";
 }

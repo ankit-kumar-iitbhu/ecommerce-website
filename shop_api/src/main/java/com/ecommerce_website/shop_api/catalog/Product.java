@@ -55,6 +55,6 @@ public class Product {
 
         @JsonProperty("href")
         public String getHREF() {
-            return Constants.productUrl + this.productId;
+            return Constants.productUrl+"/"+ this.productId;
         }
 }

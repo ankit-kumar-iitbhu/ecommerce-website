@@ -77,8 +77,7 @@ public class Bid {
 
     @JsonProperty("href")
     public String getHREF() {
-        return Constants.bidUrl + this.bidId;
+        return Constants.bidUrl +"/"+ this.bidId;
     }
 }
 
-}

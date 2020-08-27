@@ -55,7 +55,7 @@ public class Vendor {
 
     @JsonProperty("href")
     public String getHREF() {
-        return Constants.vendorUrl + this.vendorId;
+        return Constants.vendorUrl +"/"+ this.vendorId;
     }
 
 }
