@@ -1,21 +1,26 @@
 package com.ecommerce_website.shop_api.vendor;
 
 import com.ecommerce_website.shop_api.Constants;
+import com.ecommerce_website.shop_api.bid.Bid;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-public class Vendor {
+public class Vendor implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Integer vendorId;
     private String vendorName;
     private String vendorContactDetail;
+
+    @OneToMany(mappedBy = "vendor",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private Set<Bid> bids;
 
     public Vendor() {
         super();

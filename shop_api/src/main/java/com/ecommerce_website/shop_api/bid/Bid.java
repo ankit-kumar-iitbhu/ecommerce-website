@@ -8,25 +8,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Bid {
+public class Bid implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Integer bidId;
 
     private Double price;
 
-    @ManyToOne(fetch=FetchType.LAZY,optional = false)
+    @ManyToOne(fetch=FetchType.EAGER,optional = false)
     @JoinColumn(name="product_id",nullable = false)
     @OnDelete(action= OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private Product product;
 
-    @ManyToOne(fetch=FetchType.LAZY,optional = false)
+    @ManyToOne(fetch=FetchType.EAGER,optional = false)
     @JoinColumn(name="vendor_id",nullable = false)
     @OnDelete(action= OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private Vendor vendor;
 
 
@@ -59,18 +62,24 @@ public class Bid {
         this.price = price;
     }
 
+    @JsonProperty("product")
+    //@JsonIgnore
     public Product getProduct() {
-        return product;
+        return this.product;
     }
 
+    @JsonIgnore
     public void setProduct(Product product) {
         this.product = product;
     }
 
+    @JsonProperty("vendor")
+    //@JsonIgnore
     public Vendor getVendor() {
-        return vendor;
+        return this.vendor;
     }
 
+    @JsonIgnore
     public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }
