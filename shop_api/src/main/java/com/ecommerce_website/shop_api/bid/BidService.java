@@ -30,6 +30,16 @@ public class BidService {
         return new ResponseEntity<>(bids, HttpStatus.OK);
     }
 
+    public ResponseEntity<Object> getBid(Integer id) throws CustomException {
+        Optional<Bid> bidOptional = Optional.ofNullable(bidRepository.findById(id).orElse(null));
+        if(!bidOptional.isPresent()){
+            throw new CustomException("Bid with given ID does not exist",404);
+        }
+        else{
+            return new ResponseEntity<>(bidOptional.get(), HttpStatus.OK);
+        }
+    }
+
     public ResponseEntity<Object> getBidByVendorId(Integer vendorId) {
         List<Bid> bids = new ArrayList<>();
         bidRepository.findByVendorVendorId(vendorId).forEach(bids::add);
